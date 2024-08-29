@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "ajv": "^8.17.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "create-react-app": "^5.0.1",
     "lucide-react": "^0.428.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-router-dom": "^6.23.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "socket.io-client": "^4.7.5",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
@@ -29,8 +32,7 @@
     "extends": [
       "react-app",
       "react-app/jest",
-      "@babel/plugin-transform-private-property-in-object",
-      "next/core-web-vitals"
+      "@babel/plugin-transform-private-property-in-object"
     ]
   },
   "browserslist": {
