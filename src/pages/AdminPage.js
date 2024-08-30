@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import { Toaster, toast } from 'sonner';
 
-const SOCKET_SERVER_URL = 'http://localhost:5000'; // Update with your server URL
+const SOCKET_SERVER_URL = 'https://song-dedication-backend.onrender.com'; // Update with your server URL
 
 function AdminPage() {
   const [requests, setRequests] = useState([]);
