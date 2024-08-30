@@ -18,7 +18,7 @@ function ResetPassword() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/resetPassword', {
+      const response = await fetch('https://song-dedication-backend.onrender.com/resetPassword', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, resetString, newPassword }),
