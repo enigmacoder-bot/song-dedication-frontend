@@ -61,7 +61,7 @@ function Dedication() {
   };
 
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-r from-indigo-400 to-cyan-400">
+    <div className="font-sans min-h-screen flex flex-col bg-[#1f1d2b] text-white">
       <Toaster />
       <div className="bg-black text-white py-4 text-3xl font-bold text-center">Dashboard</div>
       <div className="w-full max-w-xl mx-auto mt-8">
@@ -69,17 +69,17 @@ function Dedication() {
         {requests.map((request, index) => (
           <div
             key={index}
-            className={`rounded-lg p-4 mb-4 ${request.isDedication ? 'bg-blue-200' : 'bg-white shadow-md'}`}
+            className="rounded-lg p-4 mb-4 bg-[#31abbd] text-white shadow-md"
           >
-            <p className="text-lg">
+            <p className="text-lg font-semibold">
               {request.name} - {request.artist}
             </p>
-            {request.requestedBy && <p className="text-gray-700">Requested by: {request.requestedBy}</p>}
-            {request.message && <p className="text-gray-700">Message: {request.message}</p>}
-            {request.isDedication && <p className="text-gray-700">Dedicated to: {request.dedicatedTo}</p>}
+            {request.requestedBy && <p className="text-gray-200">Requested by: {request.requestedBy}</p>}
+            {request.message && <p className="text-gray-200">Message: {request.message}</p>}
+            {request.isDedication && <p className="text-gray-200">Dedicated to: {request.dedicatedTo}</p>}
             {request.songLink && (
-              <p className="text-gray-700">
-                Song Link: <a href={request.songLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{request.songLink}</a>
+              <p className="text-gray-200">
+                Song Link: <a href={request.songLink} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline">{request.songLink}</a>
               </p>
             )}
           </div>
@@ -92,8 +92,8 @@ function Dedication() {
         Make a Request
       </button>
       {isModalOpen && (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg w-1/3">
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 p-4">
+          <div className="bg-white p-6 rounded-lg w-full max-w-md">
             <h2 className="text-2xl font-bold mb-4">Make a Request</h2>
             <input
               type="text"
@@ -139,15 +139,15 @@ function Dedication() {
               value={newRequest.songLink}
               onChange={(e) => setNewRequest({ ...newRequest, songLink: e.target.value })}
             />
-            <div className="flex justify-end">
+            <div className="flex justify-end mt-4">
               <button
-                className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
                 onClick={handleRequest}
               >
                 Request
               </button>
               <button
-                className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
