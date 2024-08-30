@@ -34,10 +34,10 @@ function Signup() {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 px-4 sm:px-0">
       <Toaster position="top-center" richColors />
-      <div className="bg-white p-6 rounded-lg w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Signup</h2>
+      <div className="bg-white p-6 rounded-lg w-full max-w-sm sm:max-w-md">
+        <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
         <form onSubmit={handleSignup}>
           <input
             type="text"
@@ -63,11 +63,14 @@ function Signup() {
             placeholder="Password"
             required
           />
-          <button type="submit" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          <button 
+            type="submit" 
+            className="w-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+          >
             Signup
           </button>
         </form>
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <p className="text-sm">
             Already have an account?{' '}
             <button onClick={redirectToLogin} className="text-blue-500 underline">
