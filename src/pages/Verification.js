@@ -10,7 +10,7 @@ function Verification() {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/user/verify/${userId}/${uniqueString}`);
+        const response = await fetch(`https://song-dedication-backend.onrender.com/user/verify/${userId}/${uniqueString}`);
         const data = await response.json();
 
         if (data.success) {
