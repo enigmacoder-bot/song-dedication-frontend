@@ -1,4 +1,3 @@
-// Verification.js
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'sonner';
@@ -33,9 +32,9 @@ function Verification() {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
       <Toaster position="top-center" richColors />
-      <div className="bg-white p-6 rounded-lg w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Email Verification</h2>
-        <p className="text-gray-700">Please wait while we verify your email...</p>
+      <div className="bg-white p-6 rounded-lg w-full max-w-md mx-4 sm:mx-auto">
+        <h2 className="text-2xl font-bold mb-4 text-center">Email Verification</h2>
+        <p className="text-gray-700 text-center">Please wait while we verify your email...</p>
       </div>
     </div>
   );
