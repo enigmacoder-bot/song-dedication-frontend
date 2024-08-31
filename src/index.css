@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sevillana&display=swap");
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -76,7 +76,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "SUSE", sans-serif;
-    background-image:url(./background.png) !important;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #044f48, #2a7561) !important;
   }
 }
