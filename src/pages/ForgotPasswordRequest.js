@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "../components/Loader"; // Import the Loader component
 
 function ForgotPasswordRequest() {
   const [email, setEmail] = useState("");

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "../components/Loader"; // Import the Loader component
 
 function Verification() {
   const navigate = useNavigate();
