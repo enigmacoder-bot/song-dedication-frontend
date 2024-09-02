@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
-import Loader from "./Loader"; // Import the Loader component
+import { Toaster ,toast} from "sonner";
+import { useState } from "react";
+import Loader from "../components/Loader"; // Import the Loader component
 
 function ForgotPasswordRequest() {
   const [email, setEmail] = useState("");
@@ -10,34 +10,25 @@ function ForgotPasswordRequest() {
 
   const handlePasswordReset = async (e) => {
     e.preventDefault();
-
     setLoading(true); // Start the loader
-
     try {
       const response = await fetch(
         "https://song-dedication-backend.onrender.com/requestResetpassword",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            redirectUrl: "http://localhost:3000/resetPassword",
-          }),
+          body: JSON.stringify({ email }),
         }
       );
       const data = await response.json();
-
-      if (data.status === "PENDING") {
-        toast.success("Password reset link sent to your email.");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      } else if (data.status === "FAILED") {
-        toast.error(data.message);
+      if (!data.error) {
+        // Handle success (e.g., show a success message)
+      } else {
+        toast.error(data.error);
       }
     } catch (error) {
       console.error(error);
-      toast.error("An error occurred. Please try again.");
+      toast.error("Error in requesting password reset!");
     } finally {
       setLoading(false); // Stop the loader
     }
@@ -49,7 +40,7 @@ function ForgotPasswordRequest() {
       {loading ? (
         <Loader /> // Show the loader while sending the reset link
       ) : (
-        <div className="bg-white p-6 rounded-lg w-full max-w-md">
+        <div className="bg-white p-6 rounded-lg w-full max-w-md relative">
           <h2 className="text-2xl font-bold mb-4 text-center">
             Forgot Password
           </h2>
@@ -69,6 +60,25 @@ function ForgotPasswordRequest() {
               Send Reset Link
             </button>
           </form>
+          <span
+            onClick={() => navigate("/login")}
+            className="absolute top-4 left-4 cursor-pointer text-gray-600 hover:text-gray-900"
+            aria-label="Go back"
+          >
+            {/* Backward Arrow Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </span>
         </div>
       )}
     </div>

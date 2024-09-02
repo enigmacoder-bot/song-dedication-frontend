@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
 
 function Login() {
+  
+             
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const url="https://song-dedication-backend.onrender.com/login";
+  const test_url="http://localhost:5000/login";
+
+
+  useEffect(()=>{
+    console.log(`\r\n\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557    \u2588\u2588\u2557  \u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \r\n\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2551 \u2588\u2588\u2554\u255D\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\r\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2554\u255D \u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\r\n\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2554\u2550\u2550\u255D  \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\r\n\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2551\u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2551\r\n\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u255D    \u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D \u255A\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\r\n                                                               \r\n`)
+
+  },[])
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://song-dedication-backend.onrender.com/login",
+      const response = await fetch(test_url
+        ,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -23,6 +34,7 @@ function Login() {
       const data = await response.json();
       if (!data.error) {
         toast.success("Login Successful");
+        console.log('Token: ',data.token);
         // Store JWT in localStorage
         window.localStorage.setItem("token", data.token);
         setTimeout(() => {
@@ -47,7 +59,7 @@ function Login() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="bg-white p-6 rounded-lg w-full max-w-md mx-4 sm:mx-auto">
+        <div className="bg-white p-6 rounded-lg w-full max-w-md mx-4 sm:mx-auto relative">
           <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
           <form onSubmit={handleLogin}>
             <input
@@ -85,6 +97,25 @@ function Login() {
               Forgot your password?
             </a>
           </p>
+          <span
+            onClick={() => navigate("/")}
+            className="absolute top-4 left-4 cursor-pointer text-gray-600 hover:text-gray-900"
+            aria-label="Go back"
+          >
+            {/* Backward Arrow Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </span>
         </div>
       )}
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "../components/Loader"; // Import the Loader component
 
 function ResetPassword() {
   const { id: userId, resetString } = useParams(); // Extract userId and resetString from URL
