@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { Toaster, toast } from "sonner";
+import Loader from "../components/Loader"; // Import the Loader component
 
 const SOCKET_SERVER_URL = "https://song-dedication-backend.onrender.com"; // Update with your server URL
 
@@ -16,10 +17,22 @@ function Dedication() {
     isDedication: false,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true); // State to manage loading
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(SOCKET_SERVER_URL);
+    const token = localStorage.getItem("token"); // Retrieve the JWT token
+
+    if (!token) {
+      window.location.href = "/login"; // Redirect to login if no token found
+      return;
+    }
+
+    const newSocket = io(SOCKET_SERVER_URL, {
+      auth: {
+        token: token, // Send the token during connection
+      },
+    });
     setSocket(newSocket);
 
     return () => {
@@ -32,6 +45,7 @@ function Dedication() {
 
     socket.on("initialRequests", (initialRequests) => {
       setRequests(initialRequests);
+      setLoading(false); // Stop loading when requests are received
     });
 
     socket.on("newRequest", (newRequest) => {
@@ -67,46 +81,50 @@ function Dedication() {
         className="bg-black text-white py-4 text-5xl font-bold text-center"
         style={{ fontFamily: '"Sevillana", cursive' }}
       >
-        Dashboard
+        Song Dedication
       </div>
       <div className="w-full max-w-xl mx-auto mt-8">
         <h2 className="text-2xl font-bold mb-4">Current Requests</h2>
-        {requests.map((request, index) => (
-          <div
-            key={index}
-            className="rounded-lg p-4 mb-4 bg-[#31abbd] text-white shadow-md"
-          >
-            <p className="text-lg font-semibold">
-              {request.name} - {request.artist}
-            </p>
-            {request.requestedBy && (
-              <p className="text-gray-200">
-                Requested by: {request.requestedBy}
+        {loading ? (
+          <Loader /> // Show the loader while loading
+        ) : (
+          requests.map((request, index) => (
+            <div
+              key={index}
+              className="rounded-lg p-4 mb-4 bg-[#31abbd] text-white shadow-md"
+            >
+              <p className="text-lg font-semibold">
+                {request.name} - {request.artist}
               </p>
-            )}
-            {request.message && (
-              <p className="text-gray-200">Message: {request.message}</p>
-            )}
-            {request.isDedication && (
-              <p className="text-gray-200">
-                Dedicated to: {request.dedicatedTo}
-              </p>
-            )}
-            {request.songLink && (
-              <p className="text-gray-200">
-                Song Link:{" "}
-                <a
-                  href={request.songLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-300 hover:underline"
-                >
-                  {request.songLink}
-                </a>
-              </p>
-            )}
-          </div>
-        ))}
+              {request.requestedBy && (
+                <p className="text-gray-200">
+                  Requested by: {request.requestedBy}
+                </p>
+              )}
+              {request.message && (
+                <p className="text-gray-200">Message: {request.message}</p>
+              )}
+              {request.isDedication && (
+                <p className="text-gray-200">
+                  Dedicated to: {request.dedicatedTo}
+                </p>
+              )}
+              {request.songLink && (
+                <p className="text-gray-200">
+                  Song Link:{" "}
+                  <a
+                    href={request.songLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-300 hover:underline"
+                  >
+                    {request.songLink}
+                  </a>
+                </p>
+              )}
+            </div>
+          ))
+        )}
       </div>
       <button
         className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 self-center"
