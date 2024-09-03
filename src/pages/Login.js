@@ -7,9 +7,6 @@ function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const url =
-    "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/login";
-  const test_url = "http://localhost:5000/login";
 
   useEffect(() => {
     console.log(
@@ -21,7 +18,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),

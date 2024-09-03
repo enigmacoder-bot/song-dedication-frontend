@@ -7,7 +7,7 @@ function AdminDummy() {
   const handleSignup = async () => {
     try {
       const result = await fetch(
-        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/adminSignup",
+        `${process.env.REACT_APP_API_BASE_URL}/adminSignup`,
         {
           method: "POST",
           headers: {

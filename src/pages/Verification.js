@@ -12,7 +12,7 @@ function Verification() {
     const verifyEmail = async () => {
       try {
         const response = await fetch(
-          `http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/user/verify/${userId}/${uniqueString}`
+          `${process.env.REACT_APP_API_BASE_URL}/verify/${userId}/${uniqueString}`
         );
         const data = await response.json();
 

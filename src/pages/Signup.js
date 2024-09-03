@@ -17,7 +17,7 @@ function Signup() {
     setLoading(true); // Start the loader
     try {
       const response = await fetch(
-        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/signup",
+        `${process.env.REACT_APP_API_BASE_URL}/signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
