@@ -98,7 +98,7 @@ function Dedication() {
   };
 
   return (
-    <div className="font-sans min-h-screen flex flex-col bg-[#1f1d2b] text-white">
+    <div className="font-sans min-h-screen flex flex-col bg-[#1f1d2b] text-white relative">
       <Toaster />
 
       <div
@@ -110,14 +110,16 @@ function Dedication() {
       <img
         src={logo}
         alt="Logo"
-        className="h-12 absolute top-5 left-9 hidden md:block transform scale-150" // Move right and scale up
+        className="h-12 absolute top-5 left-9 hidden md:block transform scale-150"
       />
       <div className="w-full max-w-4xl mx-auto mt-8">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Current Requests
         </h2>
         {loading ? (
-          <Loader />
+          <div className="fixed inset-0 z-50 flex justify-center items-center bg-white">
+            <Loader />
+          </div>
         ) : (
           requests.map((request, index) => (
             <div

@@ -15,7 +15,9 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
+      console.log(process.env.REACT_APP_API_BASE_URL);
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/login`,
         {
