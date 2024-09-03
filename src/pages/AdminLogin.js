@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
 
-const ADMIN_LOGIN_URL = 'http://localhost:5000/adminLogin'; // Update with your admin login URL
+const ADMIN_LOGIN_URL =
+  "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/adminLogin"; // Update with your admin login URL
 
 function AdminLogin() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -22,7 +23,7 @@ function AdminLogin() {
       const data = await response.json();
       if (!data.error) {
         toast.success("Login Successful");
-        console.log('Token: ', data.token);
+        console.log("Token: ", data.token);
         // Store JWT in localStorage
         window.localStorage.setItem("adminToken", data.token);
         setTimeout(() => {

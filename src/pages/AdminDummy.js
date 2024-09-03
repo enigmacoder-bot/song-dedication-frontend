@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function AdminDummy() {
   const [response, setResponse] = useState(null);
@@ -6,27 +6,30 @@ function AdminDummy() {
 
   const handleSignup = async () => {
     try {
-      const result = await fetch('http://localhost:5000/adminSignup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: 'Sumanth',
-          email: 'sumanth1222333@gmail.com',
-          password: 'Success35@',
-        }),
-      });
+      const result = await fetch(
+        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/adminSignup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "Sumanth",
+            email: "sumanth1222333@gmail.com",
+            password: "Success35@",
+          }),
+        }
+      );
 
       const data = await result.json();
 
       if (result.ok) {
         setResponse(data);
       } else {
-        setError(data.error || 'Something went wrong');
+        setError(data.error || "Something went wrong");
       }
     } catch (err) {
-      setError('Network error');
+      setError("Network error");
       console.error(err);
     }
   };

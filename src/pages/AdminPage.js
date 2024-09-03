@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
-import logo from '../novigo_logo.png'
+import logo from "../novigo_logo.png";
 
-const SOCKET_SERVER_URL = 'http://localhost:5000'; // Update with your server URL
+const SOCKET_SERVER_URL =
+  "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com"; // Update with your server URL
 
 function AdminPage() {
   const [requests, setRequests] = useState([]);
@@ -32,7 +33,7 @@ function AdminPage() {
 
         // If the error is related to authentication, navigate to login
         if (err.message === "Authentication error") {
-          window.location.href = '/adminLogin';
+          window.location.href = "/adminLogin";
         }
       });
 
@@ -46,7 +47,7 @@ function AdminPage() {
       };
     } catch (error) {
       console.error("Socket connection error:", error);
-      window.location.href = '/adminLogin';
+      window.location.href = "/adminLogin";
     }
   }, []);
 
@@ -71,14 +72,14 @@ function AdminPage() {
   const handleDelete = (requestId) => {
     if (!socket) return;
 
-    socket.emit('deleteRequest', requestId, (response) => {
+    socket.emit("deleteRequest", requestId, (response) => {
       if (response.success) {
         setRequests((prevRequests) =>
           prevRequests.filter((request) => request._id !== requestId)
         );
-        toast.success('Request deleted successfully');
+        toast.success("Request deleted successfully");
       } else {
-        toast.error('Failed to delete request');
+        toast.error("Failed to delete request");
       }
     });
   };
@@ -148,84 +149,90 @@ function AdminPage() {
 
   return (
     <div className="font-sans min-h-screen flex flex-col bg-[#1f1d2b] text-white">
-  <Toaster />
-  
-  {/* Header Section */}
-  <div className="bg-black text-white py-4 px-4 flex items-center relative">
-    <img
-      src={logo}
-      alt="Logo"
-      className="h-12 absolute top-5 left-9 hidden md:block transform scale-150" // Adjust position and scale
-    />
-    <div className="flex-1 flex justify-center">
-      <span
-        style={{ fontFamily: '"Sevillana", cursive' }}
-        className="text-3xl md:text-5xl font-bold"
-      >
-        Admin Dashboard
-      </span>
-    </div>
-  </div>
-  
-  {/* Content Section */}
-  <div className="w-full max-w-4xl mx-auto mt-8">
-    <h2 className="text-2xl font-bold mb-4 text-center">Current Requests</h2>
-    
-    {loading ? (
-      <div className="flex justify-center items-center h-64">
-        <Loader /> {/* Display loader while requests are being fetched */}
-      </div>
-    ) : requests.length > 0 ? (
-      requests.map((request) => (
-        <div
-          key={request._id}
-          className="min-h-[7em] w-[90%] max-w-[40em] mx-auto border-2 border-[rgba(75,30,133,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] text-white font-nunito p-[1em] flex flex-col gap-[0.5em] backdrop-blur-[12px] mb-4"
-        >
-          <div className="flex flex-col gap-[0.5em]">
-            <h1 className="text-[2em] font-medium mt-2">
-              {request.name} - {request.artist}
-            </h1>
-            {request.requestedBy && (
-              <p className="text-[1.2em]">Requested by: {request.requestedBy}</p>
-            )}
-            {request.message && (
-              <p className="text-[1.2em]">Message: {request.message}</p>
-            )}
-            {request.isDedication && (
-              <p className="text-[1.2em]">Dedicated to: {request.dedicatedTo}</p>
-            )}
-            {request.songLink && (
-              <p className="text-[1.2em]">
-                Song Link(↗):{' '}
-                <a
-                  href={request.songLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-800 hover:underline"
-                  style={{ color: '#033fff' }}
-                >
-                  {request.songLink}
-                </a>
-              </p>
-            )}
-          </div>
-          
-          <div className="flex justify-end mt-4">
-            <button
-              className="bg-red-500 text-white py-1 px-3 rounded-lg"
-              onClick={() => handleDelete(request._id)}
-            >
-              Delete
-            </button>
-          </div>
+      <Toaster />
+
+      {/* Header Section */}
+      <div className="bg-black text-white py-4 px-4 flex items-center relative">
+        <img
+          src={logo}
+          alt="Logo"
+          className="h-12 absolute top-5 left-9 hidden md:block transform scale-150" // Adjust position and scale
+        />
+        <div className="flex-1 flex justify-center">
+          <span
+            style={{ fontFamily: '"Sevillana", cursive' }}
+            className="text-3xl md:text-5xl font-bold"
+          >
+            Admin Dashboard
+          </span>
         </div>
-      ))
-    ) : (
-      <p className="text-gray-700 text-center">No requests available</p>
-    )}
-  </div>
-</div>
-  ); 
+      </div>
+
+      {/* Content Section */}
+      <div className="w-full max-w-4xl mx-auto mt-8">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Current Requests
+        </h2>
+
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <Loader /> {/* Display loader while requests are being fetched */}
+          </div>
+        ) : requests.length > 0 ? (
+          requests.map((request) => (
+            <div
+              key={request._id}
+              className="min-h-[7em] w-[90%] max-w-[40em] mx-auto border-2 border-[rgba(75,30,133,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] text-white font-nunito p-[1em] flex flex-col gap-[0.5em] backdrop-blur-[12px] mb-4"
+            >
+              <div className="flex flex-col gap-[0.5em]">
+                <h1 className="text-[2em] font-medium mt-2">
+                  {request.name} - {request.artist}
+                </h1>
+                {request.requestedBy && (
+                  <p className="text-[1.2em]">
+                    Requested by: {request.requestedBy}
+                  </p>
+                )}
+                {request.message && (
+                  <p className="text-[1.2em]">Message: {request.message}</p>
+                )}
+                {request.isDedication && (
+                  <p className="text-[1.2em]">
+                    Dedicated to: {request.dedicatedTo}
+                  </p>
+                )}
+                {request.songLink && (
+                  <p className="text-[1.2em]">
+                    Song Link(↗):{" "}
+                    <a
+                      href={request.songLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-800 hover:underline"
+                      style={{ color: "#033fff" }}
+                    >
+                      {request.songLink}
+                    </a>
+                  </p>
+                )}
+              </div>
+
+              <div className="flex justify-end mt-4">
+                <button
+                  className="bg-red-500 text-white py-1 px-3 rounded-lg"
+                  onClick={() => handleDelete(request._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-700 text-center">No requests available</p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default AdminPage;
