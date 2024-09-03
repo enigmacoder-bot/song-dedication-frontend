@@ -33,12 +33,15 @@ function Dedication() {
     }
 
     try {
-      const newSocket = io(SOCKET_SERVER_URL, {
-        auth: {
-          token: token, // Send the token during connection
-        },
-        transports: ["websocket"],
-      });
+      const newSocket = io(
+        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com",
+        {
+          auth: {
+            token: token, // Send the token during connection
+          },
+          transports: ["websocket"],
+        }
+      );
 
       // Listen for connection error events
       newSocket.on("connect_error", (err) => {
