@@ -8,7 +8,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const url =
-    "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/login";
+    "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/login";
   const test_url = "http://localhost:5000/login";
 
   useEffect(() => {

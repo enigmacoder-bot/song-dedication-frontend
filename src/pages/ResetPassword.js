@@ -23,7 +23,7 @@ function ResetPassword() {
 
     try {
       const response = await fetch(
-        "https://song-dedication-backend.onrender.com/resetPassword",
+        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/resetPassword",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
