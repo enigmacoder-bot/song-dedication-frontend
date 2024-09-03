@@ -5,8 +5,7 @@ import Loader from "../components/Loader"; // Import the Loader component
 import { useNavigate } from "react-router-dom";
 import logo from "../novigo_logo.png"; // Adjust the path as needed
 
-const SOCKET_SERVER_URL =
-  "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com"; // Update with your server URL
+const SOCKET_SERVER_URL = "/api/"; // Update with your server URL
 const SOCKET_TESt_URL = "http://localhost:5000";
 function Dedication() {
   const [requests, setRequests] = useState([]);
@@ -38,6 +37,7 @@ function Dedication() {
         auth: {
           token: token, // Send the token during connection
         },
+        transports: ["websocket"],
       });
 
       // Listen for connection error events
