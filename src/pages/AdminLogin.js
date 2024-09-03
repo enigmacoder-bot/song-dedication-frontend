@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
 
+<<<<<<< HEAD
 const ADMIN_LOGIN_URL = "/api/adminLogin"; // Update with your admin login URL
+=======
+const ADMIN_LOGIN_URL =
+  "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/adminLogin"; // Update with your admin login URL
+>>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
 
 function AdminLogin() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });

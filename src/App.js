@@ -13,6 +13,9 @@ import AdminPage from "./pages/AdminPage";
 import ForgotPasswordRequest from "./pages/ForgotPasswordRequest";
 import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./ProtectedRoute";
+import AdminDummy from "./pages/AdminDummy";
+import AdminLogin from "./pages/AdminLogin";
+import NotFound from "./pages/NotFound";
 function App() {
   //const isAuthenticated = window.localStorage.getItem('isAuthenticated');
 
@@ -20,18 +23,21 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Signup />} />
+        <Route path="/dummy" element={<AdminDummy/>}/>
         <Route path="/login" element={<Login />} />
+        <Route path="/adminLogin" element={<AdminLogin/>}/>
 
         <Route element={<ProtectedRoute />}>
           <Route path="/dedication" element={<Dedication />} />
           <Route path="/verification" element={<Verification />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/adminPage" element={<AdminPage />} />
         </Route>
         <Route path="/forgotRequest" element={<ForgotPasswordRequest />} />
         <Route
           path="/resetPassword/:id/:resetString"
           element={<ResetPassword />}
         />
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

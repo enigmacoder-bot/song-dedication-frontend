@@ -12,7 +12,11 @@ function Verification() {
     const verifyEmail = async () => {
       try {
         const response = await fetch(
+<<<<<<< HEAD
           `/api/user/verify/${userId}/${uniqueString}`
+=======
+          `http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/user/verify/${userId}/${uniqueString}`
+>>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
         );
         const data = await response.json();
 

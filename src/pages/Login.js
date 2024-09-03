@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import Loader from "../components/Loader"; // Import the Loader component
+import Loader from "../components/Loader";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false); // Manage loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const url =
+    "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/login";
+  const test_url = "http://localhost:5000/login";
+
+  useEffect(() => {
+    console.log(
+      `\r\n\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557    \u2588\u2588\u2557  \u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \r\n\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2551 \u2588\u2588\u2554\u255D\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\r\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2554\u255D \u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\r\n\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2554\u2550\u2550\u255D  \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\r\n\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551    \u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2551\u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2551\r\n\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u255D    \u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D \u255A\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\r\n                                                               \r\n`
+    );
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start the loader
+    setLoading(true);
     try {
+<<<<<<< HEAD
       const response = await fetch("/api/login", {
+=======
+      const response = await fetch(url, {
+>>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
@@ -20,7 +33,9 @@ function Login() {
       const data = await response.json();
       if (!data.error) {
         toast.success("Login Successful");
-        window.localStorage.setItem("isAuthenticated", "true");
+        console.log("Token: ", data.token);
+        // Store JWT in localStorage
+        window.localStorage.setItem("token", data.token);
         setTimeout(() => {
           navigate("/dedication");
         }, 2000);
@@ -33,18 +48,18 @@ function Login() {
       console.error(error);
       toast.error("Invalid Credentials");
     } finally {
-      setLoading(false); // Stop the loader
+      setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-900  bg-opacity-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 p-4 sm:p-6">
       <Toaster position="top-center" richColors />
       {loading ? (
-        <Loader /> // Show the loader when loading
+        <Loader />
       ) : (
-        <div className="bg-white p-6 rounded-lg w-1/3">
-          <h2 className="text-2xl font-bold mb-4">Login</h2>
+        <div className="bg-white p-6 rounded-lg w-full max-w-md mx-4 sm:mx-auto relative">
+          <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
           <form onSubmit={handleLogin}>
             <input
               type="email"
@@ -68,13 +83,12 @@ function Login() {
             />
             <button
               type="submit"
-              className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-              onClick={handleLogin}
+              className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
             >
               Login
             </button>
           </form>
-          <p className="mt-4 text-sm text-gray-600">
+          <p className="mt-4 text-sm text-gray-600 text-center">
             <a
               onClick={() => navigate("/forgotRequest")}
               className="text-blue-500 hover:cursor-pointer"
@@ -82,6 +96,25 @@ function Login() {
               Forgot your password?
             </a>
           </p>
+          <span
+            onClick={() => navigate("/")}
+            className="absolute top-4 left-4 cursor-pointer text-gray-600 hover:text-gray-900"
+            aria-label="Go back"
+          >
+            {/* Backward Arrow Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </span>
         </div>
       )}
     </div>

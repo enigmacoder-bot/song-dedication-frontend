@@ -22,11 +22,22 @@ function ResetPassword() {
     setLoading(true); // Start the loader
 
     try {
+<<<<<<< HEAD
       const response = await fetch("/api/resetPassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, resetString, newPassword }),
       });
+=======
+      const response = await fetch(
+        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/resetPassword",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, resetString, newPassword }),
+        }
+      );
+>>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
 
       const data = await response.json();
 
