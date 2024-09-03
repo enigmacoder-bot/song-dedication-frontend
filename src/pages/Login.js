@@ -16,11 +16,14 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(loginData),
+        }
+      );
       const data = await response.json();
       if (!data.error) {
         toast.success("Login Successful");
