@@ -12,7 +12,7 @@ function Verification() {
     const verifyEmail = async () => {
       try {
         const response = await fetch(
-          `https://song-dedication-backend.onrender.com/user/verify/${userId}/${uniqueString}`
+          `/api/user/verify/${userId}/${uniqueString}`
         );
         const data = await response.json();
 

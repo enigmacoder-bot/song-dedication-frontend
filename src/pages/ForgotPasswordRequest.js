@@ -14,17 +14,14 @@ function ForgotPasswordRequest() {
     setLoading(true); // Start the loader
 
     try {
-      const response = await fetch(
-        "https://song-dedication-backend.onrender.com/requestResetpassword",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            redirectUrl: "http://localhost:3000/resetPassword",
-          }),
-        }
-      );
+      const response = await fetch("/api/requestResetpassword", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          redirectUrl: "http://localhost:3000/resetPassword",
+        }),
+      });
       const data = await response.json();
 
       if (data.status === "PENDING") {

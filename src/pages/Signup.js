@@ -16,14 +16,11 @@ function Signup() {
     e.preventDefault();
     setLoading(true); // Start the loader
     try {
-      const response = await fetch(
-        "https://song-dedication-backend.onrender.com/signup",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(signupData),
-        }
-      );
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupData),
+      });
       const data = await response.json();
       if (!data.error) {
         toast.success("Sign Up Successful");

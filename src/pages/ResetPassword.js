@@ -22,14 +22,11 @@ function ResetPassword() {
     setLoading(true); // Start the loader
 
     try {
-      const response = await fetch(
-        "https://song-dedication-backend.onrender.com/resetPassword",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId, resetString, newPassword }),
-        }
-      );
+      const response = await fetch("/api/resetPassword", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, resetString, newPassword }),
+      });
 
       const data = await response.json();
 
