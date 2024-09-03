@@ -16,7 +16,6 @@ function Signup() {
     e.preventDefault();
     setLoading(true); // Start the loader
     try {
-
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/signup`,
         {
@@ -25,7 +24,7 @@ function Signup() {
           body: JSON.stringify(signupData),
         }
       );
->>>>>>> fix
+
       const data = await response.json();
       if (!data.error) {
         toast.success("Sign Up Successful");
