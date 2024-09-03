@@ -21,11 +21,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-<<<<<<< HEAD
       const response = await fetch("/api/login", {
-=======
-      const response = await fetch(url, {
->>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),

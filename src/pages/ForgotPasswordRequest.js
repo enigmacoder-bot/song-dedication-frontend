@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Toaster ,toast} from "sonner";
+import { Toaster, toast } from "sonner";
 import { useState } from "react";
 import Loader from "../components/Loader"; // Import the Loader component
 
@@ -12,7 +12,6 @@ function ForgotPasswordRequest() {
     e.preventDefault();
     setLoading(true); // Start the loader
     try {
-<<<<<<< HEAD
       const response = await fetch("/api/requestResetpassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -21,16 +20,7 @@ function ForgotPasswordRequest() {
           redirectUrl: "http://localhost:3000/resetPassword",
         }),
       });
-=======
-      const response = await fetch(
-        "https://song-dedication-backend.onrender.com/requestResetpassword",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
->>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
+
       const data = await response.json();
       if (!data.error) {
         // Handle success (e.g., show a success message)

@@ -6,7 +6,6 @@ function AdminDummy() {
 
   const handleSignup = async () => {
     try {
-<<<<<<< HEAD
       const result = await fetch("/api/adminSignup", {
         method: "POST",
         headers: {
@@ -18,22 +17,6 @@ function AdminDummy() {
           password: "Success35@",
         }),
       });
-=======
-      const result = await fetch(
-        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/adminSignup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: "Sumanth",
-            email: "sumanth1222333@gmail.com",
-            password: "Success35@",
-          }),
-        }
-      );
->>>>>>> f06f4e1ce27e9bfbb1591ed32997ae61a16d1d80
 
       const data = await result.json();
 
