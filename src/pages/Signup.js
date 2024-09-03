@@ -17,7 +17,7 @@ function Signup() {
     setLoading(true); // Start the loader
     try {
       const response = await fetch(
-        "https://song-dedication-backend.onrender.com/signup",
+        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com/api/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
