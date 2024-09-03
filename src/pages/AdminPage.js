@@ -148,14 +148,14 @@ function AdminPage() {
 
   return (
     <div className="font-sans min-h-screen flex flex-col bg-[#1f1d2b] text-white">
-      <Toaster />
+      <Toaster position="top-center" richColors />
 
       {/* Header Section */}
       <div className="bg-black text-white py-4 px-4 flex items-center relative">
         <img
           src={logo}
           alt="Logo"
-          className="h-12 absolute top-5 left-9 hidden md:block transform scale-150" // Adjust position and scale
+          className="h-12 absolute top-5 left-9 hidden md:block transform scale-150"
         />
         <div className="flex-1 flex justify-center">
           <span
@@ -175,7 +175,7 @@ function AdminPage() {
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <Loader /> {/* Display loader while requests are being fetched */}
+            <Loader />
           </div>
         ) : requests.length > 0 ? (
           requests.map((request) => (
@@ -187,11 +187,12 @@ function AdminPage() {
                 <h1 className="text-[2em] font-medium mt-2">
                   {request.name} - {request.artist}
                 </h1>
-                {request.requestedBy && (
-                  <p className="text-[1.2em]">
-                    Requested by: {request.requestedBy}
-                  </p>
-                )}
+                <p className="text-[1.2em]">
+                  Requested by Username: {request.requestedByUsername}
+                </p>
+                <p className="text-[1.2em]">
+                  Requested by Email: {request.requestedByEmail}
+                </p>
                 {request.message && (
                   <p className="text-[1.2em]">Message: {request.message}</p>
                 )}

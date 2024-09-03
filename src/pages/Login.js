@@ -17,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      console.log(process.env.REACT_APP_API_BASE_URL);
+      // console.log(process.env.REACT_APP_API_BASE_URL);
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/login`,
         {
@@ -29,7 +29,7 @@ function Login() {
       const data = await response.json();
       if (!data.error) {
         toast.success("Login Successful");
-        console.log("Token: ", data.token);
+        //console.log("Token: ", data.token);
         // Store JWT in localStorage
         window.localStorage.setItem("token", data.token);
         setTimeout(() => {

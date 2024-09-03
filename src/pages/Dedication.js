@@ -74,10 +74,16 @@ function Dedication() {
     socket.on("newRequest", (newRequest) => {
       setRequests([...requests, newRequest]);
     });
+    socket.on("requestDeleted", (requestId) => {
+      setRequests((prevRequests) =>
+        prevRequests.filter((request) => request._id !== requestId)
+      );
+    });
 
     return () => {
       socket.off("initialRequests");
       socket.off("newRequest");
+      socket.off("requestDeleted");
     };
   }, [socket, requests]);
 
