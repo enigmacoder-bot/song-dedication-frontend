@@ -177,7 +177,7 @@ function Dedication() {
             </h2>
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Song Name"
               value={newRequest.name}
               onChange={(e) =>
@@ -187,7 +187,7 @@ function Dedication() {
             />
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Artist"
               value={newRequest.artist}
               onChange={(e) =>
@@ -197,7 +197,7 @@ function Dedication() {
             />
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Requested By (Optional)"
               value={newRequest.requestedBy}
               onChange={(e) =>
@@ -206,7 +206,7 @@ function Dedication() {
             />
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Message (Optional)"
               value={newRequest.message}
               onChange={(e) =>
@@ -215,7 +215,7 @@ function Dedication() {
             />
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Dedicated To (Optional)"
               value={newRequest.dedicatedTo}
               onChange={(e) =>
@@ -224,7 +224,7 @@ function Dedication() {
             />
             <input
               type="text"
-              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
               placeholder="Song Link (Optional)"
               value={newRequest.songLink}
               onChange={(e) =>
