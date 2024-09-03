@@ -12,7 +12,7 @@ function Verification() {
     const verifyEmail = async () => {
       try {
         const response = await fetch(
-          `/api/user/verify/${userId}/${uniqueString}`
+          `${process.env.REACT_APP_API_BASE_URL}/verify/${userId}/${uniqueString}`
         );
         const data = await response.json();
 

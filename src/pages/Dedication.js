@@ -5,8 +5,8 @@ import Loader from "../components/Loader"; // Import the Loader component
 import { useNavigate } from "react-router-dom";
 import logo from "../novigo_logo.png"; // Adjust the path as needed
 
-const SOCKET_SERVER_URL = "/api/"; // Update with your server URL
-const SOCKET_TESt_URL = "http://localhost:5000";
+const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL;
+
 function Dedication() {
   const [requests, setRequests] = useState([]);
   const [newRequest, setNewRequest] = useState({
@@ -33,15 +33,11 @@ function Dedication() {
     }
 
     try {
-      const newSocket = io(
-        "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com",
-        {
-          auth: {
-            token: token, // Send the token during connection
-          },
-          transports: ["websocket"],
-        }
-      );
+      const newSocket = io(`${process.env.REACT_APP_API_BASE_URL}`, {
+        auth: {
+          token: token, // Send the token during connection
+        },
+      });
 
       // Listen for connection error events
       newSocket.on("connect_error", (err) => {

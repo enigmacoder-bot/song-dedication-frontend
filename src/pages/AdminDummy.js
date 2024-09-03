@@ -6,17 +6,20 @@ function AdminDummy() {
 
   const handleSignup = async () => {
     try {
-      const result = await fetch("/api/adminSignup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "Sumanth",
-          email: "sumanth1222333@gmail.com",
-          password: "Success35@",
-        }),
-      });
+      const result = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/adminSignup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "Sumanth",
+            email: "sumanth1222333@gmail.com",
+            password: "Success35@",
+          }),
+        }
+      );
 
       const data = await result.json();
 

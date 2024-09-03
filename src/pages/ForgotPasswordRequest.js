@@ -12,14 +12,14 @@ function ForgotPasswordRequest() {
     e.preventDefault();
     setLoading(true); // Start the loader
     try {
-      const response = await fetch("/api/requestResetpassword", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          redirectUrl: "http://localhost:3000/resetPassword",
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/requestResetpassword`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const data = await response.json();
       if (!data.error) {

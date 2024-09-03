@@ -16,12 +16,16 @@ function Signup() {
     e.preventDefault();
     setLoading(true); // Start the loader
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(signupData),
-      });
 
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(signupData),
+        }
+      );
+>>>>>>> fix
       const data = await response.json();
       if (!data.error) {
         toast.success("Sign Up Successful");

@@ -4,8 +4,7 @@ import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
 import logo from "../novigo_logo.png";
 
-const SOCKET_SERVER_URL =
-  "http://song-dedication-env.eba-evmm8zs2.ap-south-1.elasticbeanstalk.com"; // Update with your server URL
+const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL;
 
 function AdminPage() {
   const [requests, setRequests] = useState([]);

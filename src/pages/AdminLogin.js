@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader";
 
-const ADMIN_LOGIN_URL = "/api/adminLogin"; // Update with your admin login URL
+const ADMIN_LOGIN_URL = `${process.env.REACT_APP_API_BASE_URL}/adminLogin`; // Update with your admin login URL
 
 function AdminLogin() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
