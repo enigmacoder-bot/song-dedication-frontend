@@ -12,35 +12,36 @@ function Signup() {
   const [loading, setLoading] = useState(false); // Manage loading state
   const navigate = useNavigate();
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    setLoading(true); // Start the loader
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/signup`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(signupData),
-        }
-      );
-
-      const data = await response.json();
-      if (!data.error) {
-        toast.success("Sign Up Successful");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      } else {
-        toast.error(data.error);
+const handleSignup = async (e) => {
+  e.preventDefault();
+  setLoading(true); // Start the loader
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_BASE_URL}/signup`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupData),
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Error in Sign Up!");
-    } finally {
-      setLoading(false); // Stop the loader
+    );
+
+    const data = await response.json();
+    if (!data.error) {
+      toast.success(
+        "Sign Up Successful! Please verify your email address through the mail sent.");
+      setTimeout(() => {
+        navigate("/login");
+      }, 4500);
+    } else {
+      toast.error(data.error);
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Error in Sign Up!");
+  } finally {
+    setLoading(false); // Stop the loader
+  }
+};
 
   const redirectToLogin = () => {
     navigate("/login");
