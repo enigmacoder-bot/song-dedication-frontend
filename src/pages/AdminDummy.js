@@ -14,9 +14,9 @@ function AdminDummy() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: "Sumanth",
-            email: "sumanth1222333@gmail.com",
-            password: "Success35@",
+            "username": "admin",
+            "email": "admin@gmail.com",
+            "password": "Admin@2024"
           }),
         }
       );
