@@ -7,7 +7,7 @@ function ForgotPasswordRequest() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false); // Manage loading state
   const navigate = useNavigate();
-  const redirectUrl=process.env.REACT_APP_API_BASE_URL;
+  const redirectUrl=process.env.REACT_APP_BASE_URL;
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     setLoading(true); // Start the loader
