@@ -151,16 +151,16 @@ function Dedication() {
                 )}
                 {request.songLink && (
                   <p className="text-[1.2em]">
-                    Song Link(↗):{" "}
-                    <a
-                      href={request.songLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-800 hover:underline"
-                      style={{ color: "#033fff" }}
-                    >
-                      {request.songLink}
-                    </a>
+                  Song Link(↗):{" "}
+                  <a
+                    href={request.songLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                    style={{ color: "rgb(180, 225, 122)" }}
+                  >
+                    {request.songLink}
+                   </a>
                   </p>
                 )}
               </div>
