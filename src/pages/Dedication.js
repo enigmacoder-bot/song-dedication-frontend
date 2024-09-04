@@ -144,7 +144,7 @@ function Dedication() {
                 {request.message && (
                   <p className="text-[1.2em]">Message: {request.message}</p>
                 )}
-                {request.isDedication && (
+                {request.dedicatedTo && (
                   <p className="text-[1.2em]">
                     Dedicated to: {request.dedicatedTo}
                   </p>
