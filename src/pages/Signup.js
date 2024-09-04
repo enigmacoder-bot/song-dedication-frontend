@@ -8,40 +8,49 @@ function Signup() {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "", // Add confirmPassword to the state
   });
   const [loading, setLoading] = useState(false); // Manage loading state
   const navigate = useNavigate();
 
-const handleSignup = async (e) => {
-  e.preventDefault();
-  setLoading(true); // Start the loader
-  try {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/signup`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(signupData),
-      }
-    );
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-    const data = await response.json();
-    if (!data.error) {
-      toast.success(
-        "Sign Up Successful! Please verify your email address through the mail sent.");
-      setTimeout(() => {
-        navigate("/login");
-      }, 4500);
-    } else {
-      toast.error(data.error);
+    // Frontend validation for matching passwords
+    if (signupData.password !== signupData.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
     }
-  } catch (error) {
-    console.error(error);
-    toast.error("Error in Sign Up!");
-  } finally {
-    setLoading(false); // Stop the loader
-  }
-};
+
+    setLoading(true); // Start the loader
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(signupData),
+        }
+      );
+
+      const data = await response.json();
+      if (!data.error) {
+        toast.success(
+          "Sign Up Successful! Please verify your email address through the mail sent."
+        );
+        setTimeout(() => {
+          navigate("/login");
+        }, 4500);
+      } else {
+        toast.error(data.error);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error in Sign Up!");
+    } finally {
+      setLoading(false); // Stop the loader
+    }
+  };
 
   const redirectToLogin = () => {
     navigate("/login");
@@ -84,6 +93,16 @@ const handleSignup = async (e) => {
               }
               className="border border-gray-300 p-2 rounded-md mb-2 w-full"
               placeholder="Password"
+              required
+            />
+            <input
+              type="password"
+              value={signupData.confirmPassword}
+              onChange={(e) =>
+                setSignupData({ ...signupData, confirmPassword: e.target.value })
+              }
+              className="border border-gray-300 p-2 rounded-md mb-2 w-full"
+              placeholder="Confirm Password"
               required
             />
             <button
