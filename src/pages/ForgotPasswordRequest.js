@@ -23,7 +23,7 @@ function ForgotPasswordRequest() {
 
       const data = await response.json();
       if (!data.error) {
-        // Handle success (e.g., show a success message)
+        toast.success("Password reset link has been sent to your email. Please check your inbox.");
       } else {
         toast.error(data.error);
       }
