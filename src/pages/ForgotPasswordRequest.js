@@ -7,7 +7,7 @@ function ForgotPasswordRequest() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false); // Manage loading state
   const navigate = useNavigate();
-
+  const redirectUrl=process.env.REACT_APP_API_BASE_URL;
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     setLoading(true); // Start the loader
@@ -17,7 +17,7 @@ function ForgotPasswordRequest() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, process.env.REACT_APP_API_BASE_URL}),
+          body: JSON.stringify({ email, redirectUrl}),
         }
       );
 
