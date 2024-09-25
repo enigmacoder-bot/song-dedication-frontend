@@ -4,11 +4,14 @@ import { Toaster, toast } from "sonner";
 import Loader from "../components/Loader"; // Import the Loader component
 import { useNavigate } from "react-router-dom";
 import logo from "../novigo_logo.png"; // Adjust the path as needed
+import { jwtDecode } from "jwt-decode";
+
 
 const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL;
 
 function Dedication() {
   const [requests, setRequests] = useState([]);
+  const [userId, setUserId] = useState(null); // Store the user ID
   const [newRequest, setNewRequest] = useState({
     name: "",
     artist: "",
@@ -26,7 +29,9 @@ function Dedication() {
 
   useEffect(() => {
     const token = localStorage.getItem("token"); // Retrieve the JWT token
-
+    const decodedToken = jwtDecode(token);
+    setUserId(decodedToken._id); // Using _id from token
+    
     if (!token) {
       window.location.href = "/login"; // Redirect to login if no token found
       return;
@@ -67,12 +72,19 @@ function Dedication() {
     if (!socket) return;
 
     socket.on("initialRequests", (initialRequests) => {
-      setRequests(initialRequests);
-      setLoading(false); // Stop loading when requests are received
+      // Filter the requests to show only the current user's requests
+      const userRequests = initialRequests.filter(
+        (request) => request.user === userId
+      );
+      setRequests(userRequests);
+      setLoading(false);
     });
 
     socket.on("newRequest", (newRequest) => {
-      setRequests([...requests, newRequest]);
+      console.log('new Request',newRequest);
+      if (newRequest.user === userId) {
+        setRequests((prevRequests) => [...prevRequests, newRequest]);
+      }
     });
     socket.on("requestDeleted", (requestId) => {
       setRequests((prevRequests) =>
@@ -138,7 +150,7 @@ function Dedication() {
                 </h1>
                 {request.requestedBy && (
                   <p className="text-[1.2em]">
-                    Requested by: {request.requestedBy}
+                    Dedicated by: {request.requestedBy}
                   </p>
                 )}
                 {request.message && (
