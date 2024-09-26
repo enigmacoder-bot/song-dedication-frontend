@@ -216,7 +216,7 @@ function Dedication() {
             <input
               type="text"
               className="border border-gray-300 p-2 rounded-md mb-2 w-full text-black"
-              placeholder="Requested By (Optional)"
+              placeholder="Dedicated By (Optional)"
               value={newRequest.requestedBy}
               onChange={(e) =>
                 setNewRequest({ ...newRequest, requestedBy: e.target.value })
