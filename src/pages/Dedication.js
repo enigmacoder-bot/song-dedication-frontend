@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import logo from "../novigo_logo.png"; // Adjust the path as needed
 import { jwtDecode } from "jwt-decode";
 
-
 const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL;
 
 function Dedication() {
@@ -31,7 +30,7 @@ function Dedication() {
     const token = localStorage.getItem("token"); // Retrieve the JWT token
     const decodedToken = jwtDecode(token);
     setUserId(decodedToken._id); // Using _id from token
-    
+
     if (!token) {
       window.location.href = "/login"; // Redirect to login if no token found
       return;
@@ -72,20 +71,17 @@ function Dedication() {
     if (!socket) return;
 
     socket.on("initialRequests", (initialRequests) => {
-      // Filter the requests to show only the current user's requests
-      const userRequests = initialRequests.filter(
-        (request) => request.user === userId
-      );
-      setRequests(userRequests);
+      // Display all requests without filtering by user
+      setRequests(initialRequests);
       setLoading(false);
     });
 
     socket.on("newRequest", (newRequest) => {
-      console.log('new Request',newRequest);
-      if (newRequest.user === userId) {
-        setRequests((prevRequests) => [...prevRequests, newRequest]);
-      }
+      console.log("new Request", newRequest);
+      // Add all new requests to the state, regardless of user
+      setRequests((prevRequests) => [...prevRequests, newRequest]);
     });
+
     socket.on("requestDeleted", (requestId) => {
       setRequests((prevRequests) =>
         prevRequests.filter((request) => request._id !== requestId)
@@ -97,7 +93,7 @@ function Dedication() {
       socket.off("newRequest");
       socket.off("requestDeleted");
     };
-  }, [socket, requests]);
+  }, [socket]);
 
   const handleRequest = () => {
     if (!socket) return;
@@ -148,6 +144,11 @@ function Dedication() {
                 <h1 className="text-[2em] font-medium mt-2">
                   {request.name} - {request.artist}
                 </h1>
+                {request.requestedByUsername && (
+                  <p className="text-[1.2em]">
+                    Username: {request.requestedByUsername}
+                  </p>
+                )}
                 {request.requestedBy && (
                   <p className="text-[1.2em]">
                     Dedicated by: {request.requestedBy}
@@ -163,16 +164,16 @@ function Dedication() {
                 )}
                 {request.songLink && (
                   <p className="text-[1.2em]">
-                  Song Link(↗):{" "}
-                  <a
-                    href={request.songLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                    style={{ color: "rgb(180, 225, 122)" }}
-                  >
-                    {request.songLink}
-                   </a>
+                    Song Link(↗):{" "}
+                    <a
+                      href={request.songLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                      style={{ color: "rgb(180, 225, 122)" }}
+                    >
+                      {request.songLink}
+                    </a>
                   </p>
                 )}
               </div>
@@ -252,7 +253,8 @@ function Dedication() {
             <div className="flex flex-col md:flex-row justify-end mt-4 space-y-2 md:space-y-0 md:space-x-2">
               <button
                 className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5"
-                onClick={handleRequest} type="submit"
+                onClick={handleRequest}
+                type="submit"
               >
                 Request
               </button>
