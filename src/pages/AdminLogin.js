@@ -21,13 +21,11 @@ function AdminLogin() {
       });
       const data = await response.json();
       if (!data.error) {
-        toast.success("Login Successful");
-        console.log("Token: ", data.token);
-        // Store JWT in localStorage
+        // Store JWT in localStorage first
         window.localStorage.setItem("adminToken", data.token);
-        setTimeout(() => {
-          navigate("/adminPage");
-        }, 2000);
+        toast.success("Login Successful");
+        // Navigate immediately without setTimeout
+        navigate("/adminPage");
       } else if (data.status === 404) {
         toast.error("Please Verify Your Email to Login");
       } else {
