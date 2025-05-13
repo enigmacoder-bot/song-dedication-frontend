@@ -144,11 +144,11 @@ function Dedication() {
                 <h1 className="text-[2em] font-medium mt-2">
                   {request.name} - {request.artist}
                 </h1>
-                {request.requestedByUsername && (
-                  <p className="text-[1.2em]">
-                    Username: {request.requestedByUsername}
-                  </p>
-                )}
+                // {request.requestedByUsername && (
+                //   <p className="text-[1.2em]">
+                //     Username: {request.requestedByUsername}
+                //   </p>
+                // )}
                 {request.requestedBy && (
                   <p className="text-[1.2em]">
                     Dedicated by: {request.requestedBy}
