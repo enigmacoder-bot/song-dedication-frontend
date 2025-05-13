@@ -119,7 +119,7 @@ function Dedication() {
         className="bg-black text-white py-4 text-5xl font-bold text-center"
         style={{ fontFamily: '"Sevillana", cursive' }}
       >
-        Song Dedication
+        Song Request
       </div>
       <img
         src={logo}
